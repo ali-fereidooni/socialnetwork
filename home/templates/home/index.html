@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="" method="get">
+    {{ form.as_p }}
+    <input type="submit" value="Search">
+</form><br>
+<div class="card">
+    {% for post in posts %}
+    <div>
+        <a href="{% url 'accounts:profile' post.user.id %}" class="card-body">{{ post.user.first_name }}</a> - <a
+            href="{% url 'accounts:profile' post.user.id %}" class="card-body">@{{ post.user.username }}</a>
+    </div>
+    <a class="card-body" href="{{ post.get_absolute_url }}">
+        <div class="post">{{ post.body|truncatewords:8 }}</div>
+    </a>
+    {% endfor %}
+    <a href="{% url 'home:post_create' %}" class="btn btn-primary">Create</a>
+</div>
+{% endblock %}

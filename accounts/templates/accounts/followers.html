@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>{{ user.username }}</p>
+<hr>
+<h3>Followers</h3>
+{% for follower in followers %}
+<a href="{% url 'accounts:profile' follower.from_user.id %}">{{ follower.from_user }}</a>
+{% empty %}
+<p> this user has no follower </p>
+{% endfor %}
+{% endblock %}
